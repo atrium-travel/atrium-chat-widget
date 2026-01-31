@@ -1,0 +1,4 @@
+/*
+  Content-Type: text/html; charset=utf-8
+  X-Content-Type-Options: nosniff
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://chat.atrium.travel; frame-src https://challenges.cloudflare.com

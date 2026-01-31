@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 16.0px Helvetica; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!doctype html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width,initial-scale=1" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Atrium Chat&lt;/title&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;!-- Turnstile MUST run on a real hostname (not about:/srcdoc) --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space"> </span>&lt;script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer&gt;&lt;/script&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>:root { color-scheme: dark; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body { margin:0; background:#062015; color:#fff; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#atrium-chat { max-width:720px; margin:0 auto; padding:24px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#messages { height:360px; overflow:auto; border:1px solid rgba(255,255,255,0.15); border-radius:16px; padding:16px; background:rgba(0,0,0,0.15); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.row { margin:10px 0; white-space:pre-wrap; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.role { opacity:0.7; font-size:12px; margin-bottom:4px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.bubble { padding:10px 12px; border-radius:14px; display:inline-block; max-width:90%; background:rgba(255,255,255,0.06); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.bubble.you { background:rgba(255,255,255,0.10); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.controls { display:flex; gap:10px; margin-top:12px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>input { flex:1; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.2); color:#fff; outline:none; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>button { padding:12px 16px; border-radius:14px; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.12); color:#fff; cursor:pointer; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#status { margin-top:10px; font-size:12px; color:rgba(255,255,255,0.7); }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#turnstileBox { margin-top:14px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.pill { display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.10); font-size:12px; margin-top:8px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div id="atrium-chat"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="messages"&gt;&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="turnstileBox"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>class="cf-turnstile"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>data-sitekey="0x4AAAAAACU6JJ9FKE1zu7Qi"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>data-theme="dark"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>data-callback="onTurnstileSuccess"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>data-expired-callback="onTurnstileExpired"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>data-error-callback="onTurnstileError"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div id="turnstileStatus" class="pill"&gt;Turnstile: waiting…&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="controls"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;input id="input" placeholder="Ask Atrium…" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;button id="send"&gt;Send&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="status"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// =========================</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// CONFIG</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// =========================</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const CHAT_URL = "https://chat.atrium.travel/chat";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// If your worker requires it, set it. Otherwise leave empty.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// WARNING: putting private keys in frontend is NOT secure.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const CHAT_API_KEY = ""; // e.g. "atrium_api_..." (only if truly public/low-risk)</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const TURNSTILE_SITE_KEY = "</span><span class="s2">0x4AAAAAACU6JJ9FKE1zu7Qi</span><span class="s1">";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// =========================</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// UI HELPERS</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// =========================</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const messagesEl = document.getElementById("messages");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const inputEl = document.getElementById("input");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const sendEl = document.getElementById("send");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const statusEl = document.getElementById("status");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const turnstileStatusEl = document.getElementById("turnstileStatus");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const envStatusEl = document.getElementById("envStatus");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function escapeHtml(s) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>return (s || "").replace(/[&amp;&lt;&gt;"']/g, (c) =&gt; ({</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>"&amp;":"&amp;amp;","&lt;":"&amp;lt;","&gt;":"&amp;gt;",'"':"&amp;quot;","'":"&amp;#039;"</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}[c]));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function addMessage(role, text) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const row = document.createElement("div");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>row.className = "row";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>row.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="role"&gt;${escapeHtml(role)}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="bubble ${role === "You" ? "you" : ""}"&gt;${escapeHtml(text)}&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>messagesEl.appendChild(row);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>messagesEl.scrollTop = messagesEl.scrollHeight;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">// =========================</span></p>
+<p class="p1"><span class="s1">// TURNSTILE</span></p>
+<p class="p1"><span class="s1">// =========================</span></p>
+<p class="p1"><span class="s1">let turnstileToken = null;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">function onTurnstileSuccess(token) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>turnstileToken = token;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>document.getElementById("turnstileStatus").textContent = "Turnstile: verified ✅";</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">function onTurnstileExpired() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>turnstileToken = null;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>document.getElementById("turnstileStatus").textContent = "Turnstile: expired";</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">function onTurnstileError() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>turnstileToken = null;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>document.getElementById("turnstileStatus").textContent = "Turnstile: error";</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// =========================</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// CHAT SEND</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// =========================</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>async function send() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const msg = inputEl.value.trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (!msg) return;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (!turnstileToken) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>statusEl.textContent = "Blocked: missing Turnstile token";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>addMessage("Atrium", "Please complete the verification above.");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>inputEl.value = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>addMessage("You", msg);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>statusEl.textContent = "Sending…";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const headers = { "content-type": "application/json" };</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Optional API key (only if your worker requires it)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (CHAT_API_KEY) headers["x-api-key"] = CHAT_API_KEY;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Send token both ways (body + header) to match whatever your Worker expects</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>headers["cf-turnstile-response"] = turnstileToken;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const payload = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>message: msg,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>state: {},</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>debug: 1,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>turnstile: turnstileToken,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>turnstileToken: turnstileToken,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>cf_turnstile_response: turnstileToken</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const r = await fetch(CHAT_URL, {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>method: "POST",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>headers,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>body: JSON.stringify(payload)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const text = await r.text();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let data;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>try { data = JSON.parse(text); } catch { data = { raw: text }; }</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!r.ok) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>statusEl.textContent = `Error ${r.status}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>addMessage("Atrium (error)", JSON.stringify(data, null, 2));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>statusEl.textContent = "OK";</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const reply =</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>data.reply ||</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>data.message ||</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>data.text ||</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>(data.messages &amp;&amp; data.messages[data.messages.length - 1] &amp;&amp; (data.messages[data.messages.length - 1].text || data.messages[data.messages.length - 1].content)) ||</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>JSON.stringify(data, null, 2);</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>addMessage("Atrium", typeof reply === "string" ? reply : JSON.stringify(reply, null, 2));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} catch (e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>statusEl.textContent = "Network error";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>addMessage("Atrium (error)", String(e));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>sendEl.addEventListener("click", send);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>inputEl.addEventListener("keydown", (e) =&gt; { if (e.key === "Enter") send(); });</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>addMessage("Atrium", "Welcome. Complete verification above, then ask for a city + category.");</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Boot</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
